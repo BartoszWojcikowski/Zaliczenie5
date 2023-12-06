@@ -1,263 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    >
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textColor="@color/Blue"
-        android:textStyle="bold"
-        android:padding="6dp"
-        android:text="@string/calculator_with_chain_of_operations" />
-
-    <TextView
-        android:id="@+id/operationTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:layout_gravity="end"
-        android:gravity="right"
-        android:paddingRight="30dp"
-        android:padding="16dp"
-        tools:ignore="RtlHardcoded,RtlSymmetry"
-        android:text="" />
+        android:text="Calculator with chain operations"
+        android:textSize="24sp"
+        android:layout_marginLeft="5dp"
 
-    <TextView
-        android:id="@+id/numberTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="22sp"
-        android:paddingRight="30dp"
-        android:layout_gravity="end"
-        android:padding="16dp"
-        android:gravity="right"
-        android:inputType="numberDecimal"
-        android:text="@string/_0"
-        tools:ignore="RtlHardcoded,RtlSymmetry,TextViewEdits" />
-
-
+        />
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="5"
-        android:orientation="vertical" >
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="top"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="5dp"
 
-
-        <LinearLayout
+        >
+        <TextView
+            android:id="@+id/tvequation"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:orientation="horizontal"
-            tools:ignore="NestedWeights">
-
-            <Button
-                android:id="@+id/sevenButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                android:onClick="seven"
-                android:text="7"
-                tools:ignore="HardcodedText" />
-
-            <Button
-                android:id="@+id/eightButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="32sp"
-                android:layout_weight="1"
-                android:onClick="eight"
-                android:text="8"
-                tools:ignore="HardcodedText" />
-
-            <Button
-                android:id="@+id/nineButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="32sp"
-                android:layout_weight="1"
-                android:onClick="nine"
-                tools:ignore="HardcodedText"
-                android:text="9" />
-
-            <Button
-                android:id="@+id/additionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:textSize="32sp"
-                android:layout_weight="1"
-                tools:ignore="HardcodedText"
-                android:onClick="addition"
-                android:text="+" />
-
-        </LinearLayout>
-        <LinearLayout
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textAlignment="textEnd"
+            android:layout_marginRight="24dp"
+            />
+        <TextView
+            android:id="@+id/tvsign"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/fourButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                android:onClick="four"
-                tools:ignore="HardcodedText"
-                android:text="4" />
-
-            <Button
-                android:id="@+id/fiveButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                tools:ignore="HardcodedText"
-                android:onClick="five"
-                android:text="5" />
-
-            <Button
-                android:id="@+id/sixButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                android:onClick="six"
-                tools:ignore="HardcodedText"
-                android:text="6" />
-
-            <Button
-                android:id="@+id/subtractionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                android:onClick="subtraction"
-                tools:ignore="HardcodedText"
-                android:text="-" />
-
-        </LinearLayout>
-        <LinearLayout
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:textAlignment="textEnd"
+            android:layout_marginRight="24dp"
+            />
+        <TextView
+            android:id="@+id/tvresultshow"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textAlignment="textEnd"
+            android:textSize="24sp"
+            android:layout_marginRight="24dp"
 
-            <Button
-                android:id="@+id/oneButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                android:onClick="one"
-                tools:ignore="HardcodedText"
-                android:text="1" />
-
-            <Button
-                android:id="@+id/twoButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                android:onClick="two"
-                tools:ignore="HardcodedText"
-                android:text="2" />
-
-            <Button
-                android:id="@+id/threeButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                android:onClick="three"
-                tools:ignore="HardcodedText"
-                android:text="3" />
-
-            <Button
-                android:id="@+id/multiplicationButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                android:onClick="multiplication"
-                tools:ignore="HardcodedText"
-                android:text="*" />
-
-        </LinearLayout>
-        <LinearLayout
+            />
+        <View
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="4"
-            android:orientation="horizontal">
+            android:layout_height="1dp"
+            android:background="@color/black"
+            android:layout_marginRight="24dp"
+            android:layout_marginTop="10dp"
+            />
 
-            <Button
-                android:id="@+id/zeroButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:textSize="32sp"
-                android:onClick="zero"
-                tools:ignore="HardcodedText"
-                android:text="0" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5dp"
 
-            <Button
-                android:id="@+id/dotButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                android:onClick="dot"
-                tools:ignore="HardcodedText"
-                android:text="." />
-
-            <Button
-                android:id="@+id/divisionButton"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                tools:ignore="HardcodedText"
-                android:onClick="division"
-                android:text="/" />
-
-        </LinearLayout>
+        >
         <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="7"/>
+                <Button
+                    android:id="@+id/button8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="8"/>
+                <Button
+                    android:id="@+id/button9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4"/>
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="5"/>
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="6"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1"/>
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2"/>
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3"/>
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="4"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/clearButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="3"
-                android:textSize="32sp"
-                android:onClick="clear"
-                tools:ignore="HardcodedText"
-                android:text="C" />
+                <Button
+                    android:id="@+id/button0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="0"/>
 
-            <Button
-                android:id="@+id/equalButton"
-                android:layout_width="wrap_content"
+                <Button
+                    android:id="@+id/buttondot"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="."/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:textSize="32sp"
-                tools:ignore="HardcodedText"
-                android:onClick="equal"
-                android:text="=" />
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/buttonc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="c"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
 
+            >
+            <Button
+                android:id="@+id/buttonplus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+"/>
+            <Button
+                android:id="@+id/buttonminus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="-"/>
+            <Button
+                android:id="@+id/buttonx"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="x"/>
+            <Button
+                android:id="@+id/buttondivide"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="/"/>
+            <Button
+                android:id="@+id/buttonequal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="="/>
         </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+</FrameLayout>
