@@ -3,7 +3,6 @@ package com.example.zaliczenie5;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import com.example.zaliczenie5.databinding.ActivityMainBinding;
 import java.util.ArrayList;
@@ -11,8 +10,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     // defining binding for the Main Activity -> Activity+Main+Binding naming
-
     private ActivityMainBinding binding;
+    //define initial states
     private String currentActionState = "";
     private String currentNumberState = "";
     private String currentSignState = "";
@@ -32,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
         // set the binding instead of Root view
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        // assign functions accepting buttons and further entries as parameters
         setNumberClickListener(binding.button9, "9");
         setNumberClickListener(binding.button8, "8");
         setNumberClickListener(binding.button7, "7");
@@ -42,12 +43,13 @@ public class MainActivity extends AppCompatActivity {
         setNumberClickListener(binding.button2, "2");
         setNumberClickListener(binding.button1, "1");
         setNumberClickListener(binding.button0, "0");
-        buttonCleared(binding.buttonc);
         setSignClickListener(binding.buttonplus, "+");
         setSignClickListener(binding.buttonminus, "-");
         setSignClickListener(binding.buttonx, "x");
         setSignClickListener(binding.buttondivide, "/");
         setEqualSignClickListener(binding.buttonequal, "=");
+        // passing a clear button as parameter
+        buttonCleared(binding.buttonc);
     }
 
     @SuppressLint("SetTextI18n")
@@ -55,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         view.setOnClickListener(v -> {
 
-// if the value is 0,
+        // if the value is 0,
             if (getNumberState().equals("0")){
                 //if the user enters a 0
                 if (number.equals("0")){
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
                     setEquationState("0");
                     // if the user press 0 it adds up 0 to the array
                 } else {
-                    // else changes the number to pressed
+                    // else changes the number to pressed for both the equation and result
                     setNumberState(number);
                     setEquationState(number);
                 }
@@ -130,11 +132,13 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < numbers.size() - 1; i++) {
                     // check if the operation is 1+, then need to adjust a chain for
                     if (i > 0){
+                        //tracing the previous operator, this will need to multiply and division
                         setPreviousSignState(operators.get(i-1));
                     }
                     String operator = operators.get(i);
-
+                    //  retrieving the next nr
                     double nextNumber = Double.parseDouble(numbers.get(i + 1));
+                    // switch statement to compare the signs, for multiply and divide - nested statement, as calculation order is changing
                     switch (operator) {
                         case "+":
                             result += nextNumber;
@@ -143,24 +147,29 @@ public class MainActivity extends AppCompatActivity {
                             result -= nextNumber;
                             break;
                         case "x":
+                            // if its multiply, checking the previous sign, and reverse the SUM or SUBTRACTION
                             switch (getPreviousSignState()) {
                                 case "":
                                     result *= nextNumber;
                                     break;
                                 case "+":
+                                // if the previous sign was +, SUBTRACT THE added value, and update the calculation
                                     result -= Double.parseDouble(numbers.get(i));
                                     result = result + (Double.parseDouble(numbers.get(i)) * nextNumber);
                                     //4 + 4-3+9x3+9+2 = 43 +
                                     //4 + 4-3+9/3+9+2 = 19 +
                                     break;
                                 case "-":
+                                    // if the previous sign was -, ADD THE added value, and update the calculation
+
                                     result += Double.parseDouble(numbers.get(i));
                                     result = result - (Double.parseDouble(numbers.get(i)) * nextNumber);
                                     break;
                             }
                             break;
                         case "/":
-                            Log.e("0", String.valueOf(getNumberState().equals("0")));
+                            // DIVISION by 0 is not allowed, error displays, and all values are getting dropped
+
                             if (getNumberState().equals("0")) {
                                 setNumberState("error occured");
                                 numbers.clear();
@@ -168,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
                                 setActionState("equalsign");
                                 return;
                             } else {
+                                // if its divison not by 0, checking the previous sign, and reverse the SUM or SUBTRACTION
+
                                 switch (getPreviousSignState()) {
                                     case "":
                                         result /= nextNumber;
@@ -176,10 +187,14 @@ public class MainActivity extends AppCompatActivity {
                                         //4 + 4-3-9/3+9+2 = 13 +
                                         break;
                                     case "+":
+                                        // if the previous sign was +, SUBTRACT THE added value, and update the calculation
+
                                         result -= Double.parseDouble(numbers.get(i));
                                         result = result + (Double.parseDouble(numbers.get(i)) / nextNumber);
                                         break;
                                     case "-":
+                                        // if the previous sign was -, ADD THE added value, and update the calculation
+
                                         result += Double.parseDouble(numbers.get(i));
                                         result = result - (Double.parseDouble(numbers.get(i)) / nextNumber);
                                         break;
@@ -188,6 +203,7 @@ public class MainActivity extends AppCompatActivity {
                             break;
                     }
                 }
+                // assign the result value, and displaying, clearing the number and and operator, assigning the result value to both - result and equation displaying in calculator
                 setNumberState(String.valueOf(result));
                 numbers.clear();
                 operators.clear();
@@ -228,6 +244,7 @@ public class MainActivity extends AppCompatActivity {
         return previousSignState;
     }
 
+    // methods to set and change the default states
     private void setActionState(String newState) {
         currentActionState = newState;
 
